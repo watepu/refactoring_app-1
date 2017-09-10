@@ -1,0 +1,7 @@
+<h1>Favrites</h1>
+
+<% @favorites.each do |favorite| %>
+  <p>content：<%= favorite.content %></p>
+  <p>image</p>
+  <p><%= image_tag favorite.image_url %></p>
+<% end %>
