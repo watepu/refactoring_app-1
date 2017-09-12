@@ -2,15 +2,20 @@
 
 <% @favorites.each do |favorite| %>
   <div class="pictures center-block">
-    <p class="content"><%= favorite.user.name %></p>
+
+    <div class="content user_name">
+      <%= favorite.user.name %>
+    </div>
     <p><%= image_tag favorite.image_url %></p>
 
-    <% if Favorite.now?(favorite.id, current_user.id) %>
-      <p class="content"><%= link_to 'いいねを取り消す', favorite_path(favorite.id, content: 'favo'), method: :delete, class:'btn btn-danger' %></p>
-    <% else %>
-      <p class="content"><%= link_to 'いいね！', favorites_path(favorite_id: favorite.id), method: :post, class:'btn btn-prymary' %></p>
-    <% end %>
+    <div class="content_area">
+      <% if Favorite.now?(favorite.id, current_user.id) %>
+        <p class="content"><%= link_to 'いいねを取り消す', favorite_path(favorite.id, content: 'favo'), method: :delete, class:'btn btn-danger' %></p>
+      <% else %>
+        <p class="content"><%= link_to 'いいね！', favorites_path(favorite_id: favorite.id), method: :post, class:'btn btn-prymary' %></p>
+      <% end %>
 
-    <p class="content"><%= favorite.content %></p>
+      <p class="content"><%= favorite.content %></p>
+    </div>
   </div>
 <% end %>
