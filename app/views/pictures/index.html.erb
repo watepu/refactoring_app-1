@@ -1,28 +1,26 @@
 <p id="notice"><%= notice %></p>
+<div class="main_content">
+  <% @pictures.each do |picture| %>
+    <div class="pictures center-block">
+      <div class="content user_name">
+        <%= picture.user.name %>
+      </div>
+      <p><%= image_tag picture.image_url %></p>
 
-<h1>Pictures</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Image</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.content %></td>
-        <td><%= image_tag picture.image_url %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Blog', new_picture_path %>
+      <div class="content_area">
+        <% if Favorite.now?(picture.id, current_user.id) %>
+          <div class="content">
+            <%= link_to 'いいねを取り消す', favorite_path(picture.id), method: :delete, class:'btn btn-danger' %>
+          </div>
+        <% else %>
+          <div class="content">
+            <%= link_to 'いいね！', favorites_path(picture_id: picture.id), method: :post, class:'btn btn-prymary' %>
+          </div>
+        <% end %>
+      <div class="content">
+        <%= picture.content %>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>

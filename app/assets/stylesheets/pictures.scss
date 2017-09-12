@@ -1,3 +1,50 @@
 // Place all the styles related to the pictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 800px;
+}
+
+.main_content {
+  margin-top: 30px;
+}
+
+.pictures {
+  width: 600px;
+  background-color: #fff;
+  margin-bottom: 80px;
+  border: solid 1px #cdd1d6;
+  overflow: auto;
+  img {
+    padding: 0;
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.content {
+  padding-left: 15px;
+  .btn {
+    margin-bottom: 20px;
+  }
+}
+
+.user_name {
+  height: 60px;
+  line-height: 60px;
+}
+
+.content_area {
+  height: 200px;
+}
+
+.user_pictures img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+}

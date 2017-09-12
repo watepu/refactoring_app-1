@@ -8,6 +8,7 @@ class PicturesController < ApplicationController
 
   def index
     @pictures = Picture.all
+    @user_id = current_user.id
   end
 
   def show
@@ -22,6 +23,7 @@ class PicturesController < ApplicationController
   end
 
   def create
+    
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
 
@@ -35,6 +37,11 @@ class PicturesController < ApplicationController
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def confirm
+    @picture = Picture.new(picture_params)
+    render :new if @picture.invalid?
   end
 
   def update
@@ -52,7 +59,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user.id), notice: 'Picture was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
