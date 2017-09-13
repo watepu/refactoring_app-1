@@ -1,15 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= @picture.content %><p>
-<p><%= image_tag @picture.image_url %></p>
+<div class="pictures center-block">
+  <div class="content user_name">
+    <%= @picture.user.name %>
+  </div>
+  <p><%= image_tag @picture.image_url %></p>
 
-<% unless @picture.user == current_user %>
-  <% if @favorite.present? %>
+  <div class="content_area">
+    <% if Favorite.now?(@picture.id, current_user.id) %>
+      <div class="content">
+        <%= link_to 'いいねを取り消す', favorite_path(@picture.id), method: :delete, class:'btn btn-danger' %>
+      </div>
+    <% else %>
+      <div class="content">
+        <%= link_to 'いいね！', favorites_path(picture_id: @picture.id), method: :post, class:'btn btn-prymary' %>
+      </div>
+    <% end %>
+    <div class="content">
+      <%= @picture.content %>
+    </div>
+  </div>
+</div>
+  <!-- <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(picture_id: @picture.id), method: :delete, class:'btn btn-danger' %>
   <% else %>
     <%= link_to 'お気に入りする', favorites_path(picture_id: @picture.id), method: :post, class:'btn btn-prymary' %>
-  <% end %>
-<% end %>
+  <% end %> -->
 
 <%= link_to '編集', edit_picture_path(@picture) %> |
 <%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' } %><br>
