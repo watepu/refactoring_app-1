@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_controller.asset_host = 'https://secret-plains-11212.herokuapp.com'
+  config.action_controller.asset_host = 'http://secret-plains-11212.herokuapp.com'
   config.action_mailer.asset_host = config.action_controller.asset_host
   config.action_mailer.default_url_options = { host: 'secret-plains-11212.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
