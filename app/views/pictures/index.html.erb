@@ -6,8 +6,8 @@
         <%= picture.user.name %>
       </div>
       <p><%= image_tag picture.image_url %></p>
-            <%= link_to "ピクチャーを編集する", edit_picture_path(picture.id), class: 'btn btn-default btn-sm btn-success', if current_user.id == picture.user.id %>
-            <%= link_to "ピクチャーを削除する", picture_path(picture.id), method: :delete, data: {confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-default btn-sm btn-danger', if current_user.id == picture.user.id  %>
+      <%= link_to "ピクチャーを編集する", edit_picture_path(picture.id), class: 'btn btn-default btn-sm btn-success', if (picture.user && current_user.id == picture.user.id) %>
+      <%= link_to "ピクチャーを削除する", picture_path(picture.id), method: :delete, data: {confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-default btn-sm btn-danger', if (picture.user && current_user.id == picture.user.id) %>
 
       <div class="content_area">
         <% if Favorite.now?(picture.id, current_user.id) %>
