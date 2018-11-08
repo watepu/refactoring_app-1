@@ -9,11 +9,7 @@
     <p><%= image_tag favorite.image_url %></p>
 
     <div class="content_area">
-      <% if Favorite.now?(favorite.id, current_user.id) %>
-        <p class="content"><%= link_to 'いいねを取り消す', favorite_path(favorite.id, content: 'favo'), method: :delete, class:'btn btn-danger' %></p>
-      <% else %>
-        <p class="content"><%= link_to 'いいね！', favorites_path(favorite_id: favorite.id), method: :post, class:'btn btn-primary' %></p>
-      <% end %>
+      <%= good_on_off_button_helper(favorite.id, current_user.id) %>
 
       <p class="content"><%= favorite.content %></p>
     </div>

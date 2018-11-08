@@ -10,15 +10,7 @@
       <%= link_to "ピクチャーを削除する", picture_path(picture.id), method: :delete, data: {confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-default btn-sm btn-danger' if (picture.user && current_user.id == picture.user.id) %>
 
       <div class="content_area">
-        <% if Favorite.now?(picture.id, current_user.id) %>
-          <div class="content">
-            <%= link_to 'いいねを取り消す', favorite_path(picture.id), method: :delete, class:'btn btn-danger' %>
-          </div>
-        <% else %>
-          <div class="content">
-            <%= link_to 'いいね！', favorites_path(picture_id: picture.id), method: :post, class:'btn btn-primary' %>
-          </div>
-        <% end %>
+        <%= good_on_off_button_helper(picture.id, current_user.id) %>
         <div class="content">
           <%= picture.content %>
         </div>
