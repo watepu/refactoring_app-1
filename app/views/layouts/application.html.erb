@@ -27,13 +27,11 @@
 
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <% if logged_in? %>
-              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-              <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-            <% else %>
-              <li><%= link_to "サインアップ", new_user_path %></li>
-              <li><%= link_to "ログイン", new_session_path %></li>
-            <% end %>
+              <li><%= link_to "マイページ", user_path(current_user.id) if logged_in? %></li>
+              <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete if logged_in? %></li>
+              <li><%= link_to "サインアップ", new_user_path unless logged_in? %></li>
+              <li><%= link_to "ログイン", new_session_path unless logged_in? %></li>
+
             <li><%= link_to "新規投稿", new_picture_path %></li>
             <li><%= link_to "お気に入り一覧", favorites_path %></li>
           </ul>
@@ -45,8 +43,8 @@
       <%= yield %>
     </div>
 
-      <div id="page-top-btn2" class="page-top-btn2">
-        <p><a class="move-page-top2" id="move-page-top2">▲</a></p>
-      </div>
+    <div id="page-top-btn2" class="page-top-btn2">
+      <p><a class="move-page-top2" id="move-page-top2">▲</a></p>
+    </div>
   </body>
 </html>
